@@ -1,0 +1,1 @@
+{"type": "minecraft:any_of", "terms": [{"type": "minecraft:location_check", "predicate": {"block": {"blocks": "minecraft:stripped_acacia_log", "state": {"axis": "z"}}}}]}

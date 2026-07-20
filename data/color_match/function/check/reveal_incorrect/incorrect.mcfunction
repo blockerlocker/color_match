@@ -1,0 +1,1 @@
+execute summon text_display run data merge entity @s {background:0,text:{atlas:gui,sprite:"player_list/remove_player"},transformation:{scale:[1.09375,1.25,0],translation:[-0.27734375,0.0625,0.01]},Tags:[color_match_entity,color_match_check,color_match_incorrect]}

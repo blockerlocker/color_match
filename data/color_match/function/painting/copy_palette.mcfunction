@@ -1,0 +1,1 @@
+data modify storage color_match:clipboard all.palette_map set from entity @n[type=marker,tag=color_match_painting] data.palette_map

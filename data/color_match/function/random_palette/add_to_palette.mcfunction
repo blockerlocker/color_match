@@ -1,0 +1,1 @@
+$data modify storage color_match:temp all.random_palette_out.$(current_color) set value $(current_shade)

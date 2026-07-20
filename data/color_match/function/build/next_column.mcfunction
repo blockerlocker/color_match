@@ -1,0 +1,1 @@
+$execute positioned $(next_column_pos_x) $(next_column_pos_y) $(next_column_pos_z) run function color_match:build/row_loop

@@ -1,0 +1,1 @@
+kill @e[tag=color_match_check]

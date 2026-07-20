@@ -1,0 +1,1 @@
+{"type": "minecraft:any_of", "terms": [{"type": "minecraft:location_check", "predicate": {"block": {"blocks": "minecraft:jigsaw", "state": {"orientation": "up_south"}}}}, {"type": "minecraft:location_check", "predicate": {"block": {"blocks": "minecraft:jigsaw", "state": {"orientation": "down_south"}}}}]}

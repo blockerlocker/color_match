@@ -1,0 +1,1 @@
+$execute as @e[type=text_display,tag=color_match_pixel,nbt={data:{owner:$(UUID)}}] run function color_match:pixel/roll_color/commit with entity @s data

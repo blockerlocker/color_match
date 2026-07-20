@@ -1,0 +1,1 @@
+$data modify storage bldp:array_random out set from storage bldp:array_random in[$(value)]
