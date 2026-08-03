@@ -1,6 +1,8 @@
 Made for 26.3
 
-This is the data pack for my mini-game Color Match. You can use this data pack to recreate the same setup I have in [my videos](https://www.youtube.com/shorts/nATbAgJJMsE), but I consider this to be a work in progress, and it's not necessarily a super simple and polished experience. It's also recommended you play with a mod or [resource pack](https://modrinth.com/resourcepack/unshaded-blocks) that disables block shading to make sure the side of the block in-game matches the brightness of the raw texture file used for averaging the block colors.
+This is the data pack for my mini-game Color Match. You can use this data pack to recreate the same setup I have in [my videos](https://www.youtube.com/shorts/nATbAgJJMsE), but I consider this to be VERY work in progress, and it's not necessarily a super simple and polished experience. Almost all of the logic is going to be rewritten at some point, so don't expect ANY bug fixes for this current version.
+
+It's also recommended you play with a mod or [resource pack](https://modrinth.com/resourcepack/unshaded-blocks) that disables block shading to make sure the side of the block in-game matches the brightness of the raw texture file used for averaging the block colors.
 
 Here's an overview of each command you need to play the game yourself:
 | Command | Description |
