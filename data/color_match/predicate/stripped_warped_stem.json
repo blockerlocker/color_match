@@ -1,0 +1,35 @@
+{
+    "type": "minecraft:any_of",
+    "terms": [
+        {
+            "type": "minecraft:location_check",
+            "predicate": {
+                "block": {
+                    "blocks": "minecraft:stripped_warped_stem",
+                    "state": {
+                        "axis": "x"
+                    }
+                }
+            }
+        },
+        {
+            "type": "minecraft:location_check",
+            "predicate": {
+                "block": {
+                    "blocks": "minecraft:stripped_warped_stem",
+                    "state": {
+                        "axis": "y"
+                    }
+                }
+            }
+        },
+        {
+            "type": "minecraft:location_check",
+            "predicate": {
+                "block": {
+                    "blocks": "minecraft:stripped_warped_hyphae"
+                }
+            }
+        }
+    ]
+}

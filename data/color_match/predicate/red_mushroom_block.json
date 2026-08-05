@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:any_of",
+    "terms": [
+        {
+            "type": "minecraft:location_check",
+            "predicate": {
+                "block": {
+                    "blocks": "minecraft:red_mushroom_block",
+                    "state": {
+                        "south": "true"
+                    }
+                }
+            }
+        }
+    ]
+}

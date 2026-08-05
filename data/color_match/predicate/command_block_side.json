@@ -1,0 +1,53 @@
+{
+    "type": "minecraft:any_of",
+    "terms": [
+        {
+            "type": "minecraft:location_check",
+            "predicate": {
+                "block": {
+                    "blocks": "minecraft:command_block",
+                    "state": {
+                        "conditional": "false",
+                        "facing": "up"
+                    }
+                }
+            }
+        },
+        {
+            "type": "minecraft:location_check",
+            "predicate": {
+                "block": {
+                    "blocks": "minecraft:command_block",
+                    "state": {
+                        "conditional": "false",
+                        "facing": "down"
+                    }
+                }
+            }
+        },
+        {
+            "type": "minecraft:location_check",
+            "predicate": {
+                "block": {
+                    "blocks": "minecraft:command_block",
+                    "state": {
+                        "conditional": "false",
+                        "facing": "east"
+                    }
+                }
+            }
+        },
+        {
+            "type": "minecraft:location_check",
+            "predicate": {
+                "block": {
+                    "blocks": "minecraft:command_block",
+                    "state": {
+                        "conditional": "false",
+                        "facing": "west"
+                    }
+                }
+            }
+        }
+    ]
+}

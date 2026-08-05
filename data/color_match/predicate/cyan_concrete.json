@@ -1,0 +1,13 @@
+{
+    "type": "minecraft:any_of",
+    "terms": [
+        {
+            "type": "minecraft:location_check",
+            "predicate": {
+                "block": {
+                    "blocks": "minecraft:cyan_concrete"
+                }
+            }
+        }
+    ]
+}

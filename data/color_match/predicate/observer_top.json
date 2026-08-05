@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:any_of",
+    "terms": [
+        {
+            "type": "minecraft:location_check",
+            "predicate": {
+                "block": {
+                    "blocks": "minecraft:observer",
+                    "state": {
+                        "facing": "up"
+                    }
+                }
+            }
+        },
+        {
+            "type": "minecraft:location_check",
+            "predicate": {
+                "block": {
+                    "blocks": "minecraft:observer",
+                    "state": {
+                        "facing": "down"
+                    }
+                }
+            }
+        }
+    ]
+}

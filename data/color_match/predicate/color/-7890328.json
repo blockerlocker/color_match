@@ -1,1 +1,0 @@
-{"type": "minecraft:any_of", "terms": [{"type": "minecraft:location_check", "predicate": {"block": {"blocks": "minecraft:oxidized_copper_bulb", "state": {"lit": "true"}}}}, {"type": "minecraft:location_check", "predicate": {"block": {"blocks": "minecraft:waxed_oxidized_copper_bulb", "state": {"lit": "true"}}}}]}
