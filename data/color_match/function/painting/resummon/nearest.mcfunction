@@ -1,0 +1,1 @@
+execute as @n[type=marker,tag=color_match_painting,tag=color_match_init] run function color_match:painting/resummon/self

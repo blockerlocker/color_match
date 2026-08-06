@@ -1,1 +1,0 @@
-$function color_match:pixel/display_block/commit with storage color_match:texture_lookup all.$(background)

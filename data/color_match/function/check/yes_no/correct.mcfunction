@@ -1,1 +1,1 @@
-execute summon text_display run data merge entity @s {background:0,text:{atlas:gui,sprite:"icon/checkmark"},transformation:{scale:[2.5,2.8125,0],translation:[-0.0625,-0.421875,0]},Tags:[color_match_entity,color_match_check,color_match_correct]}
+execute summon text_display run data merge entity @s {background:0,text:{atlas:gui,sprite:"icon/checkmark"},transformation:{scale:[2.8125,2.5,0],translation:[-0.0703125,-0.375,0]},Tags:[color_match_entity,color_match_check,color_match_correct]}

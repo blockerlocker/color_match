@@ -1,6 +1,6 @@
 kill @e[tag=color_match_check]
 
-execute as @e[type=text_display,tag=color_match_pixel] at @s run function color_match:check/reveal_incorrect/pixel_check with entity @s
+execute as @e[type=text_display,tag=color_match_pixel] at @s run function color_match:check/reveal_incorrect/pixel_check with entity @s data
 
 execute if entity @e[type=text_display,tag=color_match_incorrect] as @a at @s run playsound block.note_block.bass ui @s
 

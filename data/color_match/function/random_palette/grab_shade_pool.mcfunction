@@ -1,1 +1,0 @@
-$data modify storage color_match:temp all.random_palette.shade_pool set from storage color_match:palette_lookup all.$(current_color)

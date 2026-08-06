@@ -1,0 +1,1 @@
+$data modify storage color_match:temp all.texture_decimal set from storage color_match:block_lookup all[{texture:"$(texture)"}].decimal
