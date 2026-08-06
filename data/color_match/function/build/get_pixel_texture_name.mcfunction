@@ -1,1 +1,0 @@
-$data modify storage color_match:temp all.build.texture set from storage color_match:temp all.build.palette_map[$(pixel_index)]
