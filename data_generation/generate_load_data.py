@@ -9,7 +9,7 @@ os.chdir(directory)
 block_textures = os.listdir("whole_block_textures")
 art_textures = os.listdir("raw_art")
 
-DEBUG = False
+DEBUG = True
 
 def average_color(file_name):
     total_red = 0
@@ -124,10 +124,6 @@ for file_name in art_textures:
             if color["rgb"] != "none":
                 palette[palette.index(color)]["blocks"] = []
 
-        discarded_colors = []
-
-        test_unclaimed = unclaimed_colors.copy()
-
         def weighted_hsv_distance(a,b,weights):
             hsv_a = hsv_color(*a)
             hsv_b = hsv_color(*b)
@@ -142,59 +138,21 @@ for file_name in art_textures:
             hsv_b = hsv_color(*b)
 
             return min(math.dist(hsv_a,hsv_b),math.dist(hsv_a,tuple(x - y for x, y in zip(hsv_b, (255, 0, 0)))))
-        
-        for unclaimed in test_unclaimed:
-            candidates = []
-            for color in palette:
-                if color["color"] != "none":
-                    if weighted_hsv_distance(color["rgb"],unclaimed["rgb"],(3,1,2)) < 92:
-                        candidates.append(color)
-            if len(candidates) == 0:
-                discarded_colors.append(unclaimed)
-                unclaimed_colors.remove(unclaimed)
-
-        if DEBUG == True: print(f"----{stripped_file_name}: {len(unclaimed_colors)} colors kept")
-        
-        while len(unclaimed_colors) > 0:
-            for color in palette:
-                if color["color"] != "none":
-                    nearest_color = None
-                    for unclaimed in unclaimed_colors:
-                        if nearest_color == None:
-                            nearest_color = unclaimed
-                        if weighted_hsv_distance(color["rgb"],unclaimed["rgb"],(2,1,3)) < weighted_hsv_distance(color["rgb"],nearest_color["rgb"],(2,1,3)):
-                            nearest_color = unclaimed
-                    if nearest_color != None:
-                        color["blocks"].append(nearest_color["texture"])
-                        unclaimed_colors.remove(nearest_color)
 
         for color in palette:
             if color["color"] != "none":
-                if DEBUG == True: print(f"------{stripped_file_name}: Color {color["color"]} has {len(color["blocks"])} assigned")
+                for unclaimed in unclaimed_colors:
+                    if weighted_hsv_distance(color["rgb"],unclaimed["rgb"],(2,1,3)) < 100:
+                        color["blocks"].append(unclaimed["texture"])
 
-        nonrandom_colors = 0
-
-        for color in palette:
-            if color["color"] != "none":
-                if len(color["blocks"]) < 2:
-                    nearest_color = None
-                    for unclaimed in discarded_colors:
-                        if nearest_color == None:
-                            nearest_color = unclaimed
-                        if math.dist(color["rgb"],unclaimed["rgb"]) < math.dist(color["rgb"],nearest_color["rgb"]):
-                            nearest_color = unclaimed
-                    nonrandom_colors += 1
-                    if nearest_color != None:
-                        color["blocks"].append(nearest_color["texture"])
-                        discarded_colors.remove(nearest_color)
-                    else:
-                        print(f"--/!\\ No extra texture to assign to {color["color"]} in \"{stripped_file_name}\", available textures are: {color["blocks"]}")
-            color.pop("rgb",None)
-
-        if DEBUG == True: print(f"----{stripped_file_name}: {nonrandom_colors} colors had fewer than 2 textures assigned, and {len(discarded_colors)} textures went unused")
+                color.pop("rgb",None)
 
         art_data.append({"name":stripped_file_name,"pixels":pixels,"palette":palette,"width":width,"height":height})
         art_lookup.append(stripped_file_name)
+
+if DEBUG == True:
+    for art in art_data:
+        print(f"----{art["name"]}: Lowest assignment {min(len(color["blocks"]) for color in art["palette"])}, highest assignment {max(len(color["blocks"]) for color in art["palette"])}")
 
 for block in block_lookup:
     block.pop("rgb",None)
