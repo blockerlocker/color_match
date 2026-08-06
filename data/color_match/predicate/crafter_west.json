@@ -1,0 +1,38 @@
+{
+    "type": "minecraft:any_of",
+    "terms": [
+        {
+            "type": "minecraft:location_check",
+            "predicate": {
+                "block": {
+                    "blocks": "minecraft:crafter",
+                    "state": {
+                        "orientation": "west_up"
+                    }
+                }
+            }
+        },
+        {
+            "type": "minecraft:location_check",
+            "predicate": {
+                "block": {
+                    "blocks": "minecraft:crafter",
+                    "state": {
+                        "orientation": "down_west"
+                    }
+                }
+            }
+        },
+        {
+            "type": "minecraft:location_check",
+            "predicate": {
+                "block": {
+                    "blocks": "minecraft:crafter",
+                    "state": {
+                        "orientation": "up_east"
+                    }
+                }
+            }
+        }
+    ]
+}

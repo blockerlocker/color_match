@@ -1,1 +1,0 @@
-{"type": "minecraft:any_of", "terms": [{"type": "minecraft:location_check", "predicate": {"block": {"blocks": "minecraft:beehive", "state": {"facing": "east"}}}}, {"type": "minecraft:location_check", "predicate": {"block": {"blocks": "minecraft:beehive", "state": {"facing": "west"}}}}]}

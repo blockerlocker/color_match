@@ -1,0 +1,60 @@
+{
+    "type": "minecraft:any_of",
+    "terms": [
+        {
+            "type": "minecraft:location_check",
+            "predicate": {
+                "block": {
+                    "blocks": "minecraft:acacia_log",
+                    "state": {
+                        "axis": "x"
+                    }
+                }
+            }
+        },
+        {
+            "type": "minecraft:location_check",
+            "predicate": {
+                "block": {
+                    "blocks": "minecraft:acacia_log",
+                    "state": {
+                        "axis": "y"
+                    }
+                }
+            }
+        },
+        {
+            "type": "minecraft:location_check",
+            "predicate": {
+                "block": {
+                    "blocks": "minecraft:acacia_wood",
+                    "state": {
+                        "axis": "x"
+                    }
+                }
+            }
+        },
+        {
+            "type": "minecraft:location_check",
+            "predicate": {
+                "block": {
+                    "blocks": "minecraft:acacia_wood",
+                    "state": {
+                        "axis": "y"
+                    }
+                }
+            }
+        },
+        {
+            "type": "minecraft:location_check",
+            "predicate": {
+                "block": {
+                    "blocks": "minecraft:acacia_wood",
+                    "state": {
+                        "axis": "z"
+                    }
+                }
+            }
+        }
+    ]
+}

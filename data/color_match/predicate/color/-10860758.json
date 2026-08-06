@@ -1,1 +1,0 @@
-{"type": "minecraft:any_of", "terms": [{"type": "minecraft:location_check", "predicate": {"block": {"blocks": "minecraft:chiseled_bookshelf", "state": {"facing": "south", "slot_1_occupied": "false", "slot_2_occupied": "false", "slot_3_occupied": "false", "slot_4_occupied": "false", "slot_5_occupied": "false"}}}}]}

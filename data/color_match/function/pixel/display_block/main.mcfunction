@@ -1,1 +1,1 @@
-$execute as @e[type=text_display,tag=color_match_pixel,nbt={data:{owner:$(UUID)}}] run function color_match:pixel/display_block/get_block_texture with entity @s
+$execute as @e[type=text_display,tag=color_match_pixel,nbt={data:{owner:$(UUID)}}] run function color_match:pixel/display_block/commit with entity @s data

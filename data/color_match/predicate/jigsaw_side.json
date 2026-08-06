@@ -1,0 +1,71 @@
+{
+    "type": "minecraft:any_of",
+    "terms": [
+        {
+            "type": "minecraft:location_check",
+            "predicate": {
+                "block": {
+                    "blocks": "minecraft:jigsaw",
+                    "state": {
+                        "orientation": "up_west"
+                    }
+                }
+            }
+        },
+        {
+            "type": "minecraft:location_check",
+            "predicate": {
+                "block": {
+                    "blocks": "minecraft:jigsaw",
+                    "state": {
+                        "orientation": "up_east"
+                    }
+                }
+            }
+        },
+        {
+            "type": "minecraft:location_check",
+            "predicate": {
+                "block": {
+                    "blocks": "minecraft:jigsaw",
+                    "state": {
+                        "orientation": "down_west"
+                    }
+                }
+            }
+        },
+        {
+            "type": "minecraft:location_check",
+            "predicate": {
+                "block": {
+                    "blocks": "minecraft:jigsaw",
+                    "state": {
+                        "orientation": "down_east"
+                    }
+                }
+            }
+        },
+        {
+            "type": "minecraft:location_check",
+            "predicate": {
+                "block": {
+                    "blocks": "minecraft:jigsaw",
+                    "state": {
+                        "orientation": "west_up"
+                    }
+                }
+            }
+        },
+        {
+            "type": "minecraft:location_check",
+            "predicate": {
+                "block": {
+                    "blocks": "minecraft:jigsaw",
+                    "state": {
+                        "orientation": "east_up"
+                    }
+                }
+            }
+        }
+    ]
+}
