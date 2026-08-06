@@ -24,4 +24,4 @@ Here's an overview of each command you need to play the game yourself:
 | `/function color_match:check/clear` | Remove all check entities. |
 | `/function color_match:debug/kill_all_entities` | Remove all Color Match entities.  |
 
-If you want to add new pieces of art to the game, place a png filw in the `raw_art` folder, and then run the `generate_load_data.py` Python script to re-generate the game's data. I'd warn against using VERY large pieces of art, it'll probably get laggy in-game.
+If you want to add new pieces of art to the game, place a png file in the `raw_art` folder, and then run the `generate_load_data.py` Python script to re-generate the game's data. I'd warn against using VERY large pieces of art, it'll probably get laggy in-game.
