@@ -128,18 +128,26 @@ for file_name in art_textures:
 
         test_unclaimed = unclaimed_colors.copy()
 
-        def weighted_distance(a,b,weights):
-
-            a_weighted = (a[0] * weights[0], a[1] * weights[1], a[2] * weights[2])
-            b_weighted = (b[0] * weights[0], b[1] * weights[1], b[2] * weights[2])
+        def weighted_hsv_distance(a,b,weights):
+            hsv_a = hsv_color(*a)
+            hsv_b = hsv_color(*b)
             
-            return math.dist(a_weighted,b_weighted)
+            a_weighted = (hsv_a[0] * weights[0], hsv_a[1] * weights[1], hsv_a[2] * weights[2])
+            b_weighted = (hsv_b[0] * weights[0], hsv_b[1] * weights[1], hsv_b[2] * weights[2])
+            
+            return min(math.dist(a_weighted,b_weighted),math.dist(a_weighted,tuple(x - y for x, y in zip(hsv_b, (255 * weights[0], 0, 0)))))
+
+        def hsv_distance(a,b):
+            hsv_a = hsv_color(*a)
+            hsv_b = hsv_color(*b)
+
+            return min(math.dist(hsv_a,hsv_b),math.dist(hsv_a,tuple(x - y for x, y in zip(hsv_b, (255, 0, 0)))))
         
         for unclaimed in test_unclaimed:
             candidates = []
             for color in palette:
                 if color["color"] != "none":
-                    if weighted_distance(hsv_color(*color["rgb"]),hsv_color(*unclaimed["rgb"]),(2,1,3)) < 100:
+                    if weighted_hsv_distance(color["rgb"],unclaimed["rgb"],(3,1,2)) < 92:
                         candidates.append(color)
             if len(candidates) == 0:
                 discarded_colors.append(unclaimed)
@@ -154,7 +162,7 @@ for file_name in art_textures:
                     for unclaimed in unclaimed_colors:
                         if nearest_color == None:
                             nearest_color = unclaimed
-                        if math.dist(color["rgb"],unclaimed["rgb"]) < math.dist(color["rgb"],nearest_color["rgb"]):
+                        if weighted_hsv_distance(color["rgb"],unclaimed["rgb"],(2,1,3)) < weighted_hsv_distance(color["rgb"],nearest_color["rgb"],(2,1,3)):
                             nearest_color = unclaimed
                     if nearest_color != None:
                         color["blocks"].append(nearest_color["texture"])
