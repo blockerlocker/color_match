@@ -1,7 +1,4 @@
-import os
-import json
-import shutil
-import colorsys
+import os, json, shutil, colorsys, math
 from PIL import Image
 from pathlib import Path
 
@@ -68,12 +65,6 @@ for file_name in block_textures:
         if not average == None:
             decimal = decimal_color(*average)
 
-            hsv = hsv_color(*average)
-
-            hue = hsv[0]
-            saturation = hsv[1]
-            value = hsv[2]
-
             with open(f"../data/color_match/predicate/{stripped_file_name}.json") as json_file:
                 block_predicate = json.load(json_file)
 
@@ -85,12 +76,14 @@ for file_name in block_textures:
                     block_state_data["properties"] = block_state["predicate"]["block"]["state"]
                 block_states.append(block_state_data)
             
-            block_map.append({"texture":stripped_file_name,"decimal":decimal,"hue":hue,"saturation":saturation,"value":value,"block_states":block_states})
+            block_map.append({"texture":stripped_file_name,"decimal":decimal,"rgb":average,"block_states":block_states})
 
 print("--Creating Art Map")
-
+art_map = []
 for file_name in art_textures:
     if file_name.endswith(".png"):
+        stripped_file_name = file_name[:-4]
+
         raw_texture = Image.open("raw_art/" + file_name)
         rgb_texture = raw_texture.convert("RGBA")
         width, height = rgb_texture.size
@@ -103,67 +96,58 @@ for file_name in art_textures:
             for y in range(0, height):
                 r, g, b, a = rgb_texture.getpixel((x,y))
 
-                hsv = hsv_color(r,g,b)
+                rgb = (r,g,b)
                 if a == 255:
-                    pixel_color = hsv
+                    texel = {"color":decimal_color(*rgb),"rgb":rgb}
                 else:
-                    pixel_color = "none"
+                    texel = {"color":"none","rgb":"none"}
 
-                if not {"color":pixel_color} in palette:
-                    palette.append({"color":pixel_color})
+                if not texel in palette:
+                    if texel == "none":
+                        palette.append(texel)
+                    else:
+                        palette.append(texel)
                     palette_index += 1
 
-                pixels.append(palette.index({"color":pixel_color}))
+                pixels.append(palette.index(texel))
 
         unclaimed_colors = []
 
-        for h in range(0,360):
-            for s in range(0,100):
-                for v in range(0,100):
-                    unclaimed_colors.append((h,s,v))
-                    print((h,s,v))
+        for block in block_map:
+            unclaimed_colors.append(block)
 
         for color in palette:
-            if color["color"] != "none":
-                palette[palette.index(color)]["unscanned"] = [color["color"]]
+            if color["rgb"] != "none":
                 palette[palette.index(color)]["claimed"] = []
                 
-                if color["color"] in unclaimed_colors:
+                if color["rgb"] in unclaimed_colors:
                     unclaimed_colors.remove(color["color"])
             
         while len(unclaimed_colors) > 0:
-            print(len(unclaimed_colors))
             for color in palette:
-                if color["color"] != "none":
-                    for unscanned in color["unscanned"]:
-                        new_claims = []
-                        new_claims.append((unscanned[0] + 1, unscanned[1], unscanned[2]))
-                        new_claims.append((unscanned[0], unscanned[1] + 1, unscanned[2]))
-                        new_claims.append((unscanned[0], unscanned[1], unscanned[2] + 1))
-                        new_claims.append((unscanned[0] - 1, unscanned[1], unscanned[2]))
-                        new_claims.append((unscanned[0], unscanned[1] - 1, unscanned[2]))
-                        new_claims.append((unscanned[0], unscanned[1], unscanned[2] - 1))
+                if color["rgb"] != "none":
+                    nearest_color = None
+                    for unclaimed in unclaimed_colors:
+                        unclaimed_rgb = (unclaimed["rgb"])
+                        if nearest_color == None:
+                            nearest_color = unclaimed_rgb
+                        elif math.dist(color["rgb"],unclaimed_rgb) < math.dist(color["rgb"],nearest_color):
+                               nearest_color = unclaimed_rgb     
+                    if nearest_color != None:
+                        palette[palette.index(color)]["claimed"].append(unclaimed["texture"])                        
+                        unclaimed_colors.remove(unclaimed)
 
-                        print(new_claims)
+        for color in palette:
+            color.pop("rgb",None)
 
-                        palette[palette.index(color)]["claimed"].append(unscanned)
-                        palette[palette.index(color)]["unscanned"].remove(unscanned)
+        art_map.append({"name":stripped_file_name,"pixels":pixels,"palette":palette})
 
-                        print(palette[palette.index(color)])
-
-                        for new_claim in new_claims:
-                            if new_claim in unclaimed_colors:
-                                palette[palette.index(color)]["unscanned"].append(new_claim)
-                                unclaimed_colors.remove(new_claim)
-                                
-
-                    
-            
-        print("\n\n\n"+str(palette))
+for block in block_map:
+    block.pop("rgb",None)
 
 print("--Writing data to lookup_tables.mcfunction")
-
-block_map_command = f"data modify storage color_match:art_lookup all set value {block_map}"
+block_map_command = f"data modify storage color_match:block_lookup all set value {block_map}"
+art_map_command = f"data modify storage color_match:art_lookup all set value {art_map}"
 
 with open("../data/color_match/function/load/lookup_tables.mcfunction", "w") as file:
-    file.write(block_map_command)
+    file.write(f"{block_map_command}\n{art_map_command}")
