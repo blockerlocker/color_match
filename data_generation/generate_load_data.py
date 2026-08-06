@@ -91,7 +91,75 @@ print("--Creating Art Map")
 
 for file_name in art_textures:
     if file_name.endswith(".png"):
-        print("art")
+        raw_texture = Image.open("raw_art/" + file_name)
+        rgb_texture = raw_texture.convert("RGBA")
+        width, height = rgb_texture.size
+
+        palette = []
+        pixels = []
+        palette_index = 0
+
+        for x in range(0, width):
+            for y in range(0, height):
+                r, g, b, a = rgb_texture.getpixel((x,y))
+
+                hsv = hsv_color(r,g,b)
+                if a == 255:
+                    pixel_color = hsv
+                else:
+                    pixel_color = "none"
+
+                if not {"color":pixel_color} in palette:
+                    palette.append({"color":pixel_color})
+                    palette_index += 1
+
+                pixels.append(palette.index({"color":pixel_color}))
+
+        unclaimed_colors = []
+
+        for h in range(0,360):
+            for s in range(0,100):
+                for v in range(0,100):
+                    unclaimed_colors.append((h,s,v))
+                    print((h,s,v))
+
+        for color in palette:
+            if color["color"] != "none":
+                palette[palette.index(color)]["unscanned"] = [color["color"]]
+                palette[palette.index(color)]["claimed"] = []
+                
+                if color["color"] in unclaimed_colors:
+                    unclaimed_colors.remove(color["color"])
+            
+        while len(unclaimed_colors) > 0:
+            print(len(unclaimed_colors))
+            for color in palette:
+                if color["color"] != "none":
+                    for unscanned in color["unscanned"]:
+                        new_claims = []
+                        new_claims.append((unscanned[0] + 1, unscanned[1], unscanned[2]))
+                        new_claims.append((unscanned[0], unscanned[1] + 1, unscanned[2]))
+                        new_claims.append((unscanned[0], unscanned[1], unscanned[2] + 1))
+                        new_claims.append((unscanned[0] - 1, unscanned[1], unscanned[2]))
+                        new_claims.append((unscanned[0], unscanned[1] - 1, unscanned[2]))
+                        new_claims.append((unscanned[0], unscanned[1], unscanned[2] - 1))
+
+                        print(new_claims)
+
+                        palette[palette.index(color)]["claimed"].append(unscanned)
+                        palette[palette.index(color)]["unscanned"].remove(unscanned)
+
+                        print(palette[palette.index(color)])
+
+                        for new_claim in new_claims:
+                            if new_claim in unclaimed_colors:
+                                palette[palette.index(color)]["unscanned"].append(new_claim)
+                                unclaimed_colors.remove(new_claim)
+                                
+
+                    
+            
+        print("\n\n\n"+str(palette))
 
 print("--Writing data to lookup_tables.mcfunction")
 
