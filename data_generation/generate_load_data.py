@@ -131,13 +131,13 @@ for file_name in art_textures:
             a_weighted = (hsv_a[0] * weights[0], hsv_a[1] * weights[1], hsv_a[2] * weights[2])
             b_weighted = (hsv_b[0] * weights[0], hsv_b[1] * weights[1], hsv_b[2] * weights[2])
             
-            return min(math.dist(a_weighted,b_weighted),math.dist(a_weighted,tuple(x - y for x, y in zip(hsv_b, (255 * weights[0], 0, 0)))))
+            return min(math.dist(a_weighted,b_weighted),math.dist(a_weighted,tuple(x - y for x, y in zip(hsv_b, (255 * weights[0], 0, 0)))),math.dist(a_weighted,tuple(x + y for x, y in zip(hsv_b, (255 * weights[0], 0, 0)))))
 
         def hsv_distance(a,b):
             hsv_a = hsv_color(*a)
             hsv_b = hsv_color(*b)
 
-            return min(math.dist(hsv_a,hsv_b),math.dist(hsv_a,tuple(x - y for x, y in zip(hsv_b, (255, 0, 0)))))
+            return min(math.dist(hsv_a,hsv_b),math.dist(hsv_a,tuple(x - y for x, y in zip(hsv_b, (255, 0, 0)))),math.dist(hsv_a,tuple(x + y for x, y in zip(hsv_b, (255, 0, 0)))))
 
         for color in palette:
             if color["color"] != "none":
