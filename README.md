@@ -1,10 +1,45 @@
-Made for 26.3
+<p align="center">
+  <img alt="header" src="https://shieldcn.dev/header/gradient.svg?title=Color+Match&amp;subtitle=This+data+pack+adds+a+custom+mini-game+called+%22Color+Match%22&amp;mode=dark&amp;image=https%3A%2F%2Fimgur.com%2FSdfYjei.png" />
+</p>
 
-This is the data pack for my mini-game Color Match. You can use this data pack to recreate the same setup I have in [my videos](https://www.youtube.com/shorts/nATbAgJJMsE), but I consider this project to be a work in progerss, and it's not necessarily a super simple and polished experience. Be sure to read this guide carefully if you're trying to set it up for yousrelf.
+<p align="center">
+  <a href="https://youtube.com/@BlockerLockerYT"><img alt="subscribers" src="https://shieldcn.dev/youtube/subscribers/UCsBjURrPoezykLs9EqgamOA.svg?label=Subs" /></a>
+  <img alt="Custom badge" src="https://shieldcn.dev/badge/26.3.svg?variant=outline&amp;theme=emerald&amp;label=Minecraft" />
+</p>
 
-It's also recommended you play with a mod or [resource pack](https://modrinth.com/resourcepack/unshaded-blocks) that disables block shading to make sure the side of the block in-game matches the brightness of the raw texture file used for averaging the block colors.
+## Overview
 
-Here's an overview of each command you need to play the game yourself:
+Color Match was made for Minecraft 26.3 by the popular YouTuber **BlockerLocker**.
+
+This data pack allows you to recreate the exact mini-game setup seen in [my videos](https://www.youtube.com/shorts/nATbAgJJMsE). 
+
+> [!NOTE]
+> This project is a work in progress and is not necessarily a super simple or polished experience. Be sure to read this guide carefully if you are setting it up for yourself.
+
+### Recommendations
+
+It is highly recommended to play with a mod or [resource pack](https://modrinth.com/resourcepack/unshaded-blocks) that disables block shading. This ensures the side of the block in-game matches the brightness of the raw texture file used for averaging block colors.
+
+### Compatibility
+
+| Minecraft Version | Supported? |
+| --- | --- |
+| 26.3-snapshot-7 | ✅ |
+| 26.3-snapshot-6 | ❌ |
+| 26.3-snapshot-5 and earlier | ❌ |
+| 26.2.x | ❌ |
+| 26.1.x | ❌ |
+| 1.21.x and older | ❌ |
+
+> [!WARNING]  
+> Running this data pack on unlisted or older versions may work, but it is completely untested and not officially supported.
+
+---
+
+## Commands
+
+Here is an overview of each command you need to play the game:
+
 | Command | Description |
 | --- | --- |
 | `/function color_match:painting/spawn/set {name:<painting_name>}` | Summon a painting by its name (the file name in the `raw_art` folder). Paintings spawn from the bottom left corner and always face south. They will always have a random color palette when spawned. All commands that have an option for "nearest" search for the nearest painting by its bottom left corner. |
@@ -22,6 +57,21 @@ Here's an overview of each command you need to play the game yourself:
 | `/function color_match:check/yes_no/main` | Check how well you did at guessing, with checkmarks on correct guesses, and just small Xs on incorrect guesses. |
 | `/function color_match:check/reveal_block/main` | Spawn the correct block textures on top of every pixel. |
 | `/function color_match:check/clear` | Remove all check entities. |
-| `/function color_match:debug/kill_all_entities` | Remove all Color Match entities.  |
+| `/function color_match:debug/kill_all_entities` | Remove all Color Match entities. |
 
-If you want to add new pieces of art to the game, place a png file in the `raw_art` folder, and then run the `generate_load_data.py` Python script to re-generate the game's data. I'd warn against using VERY large pieces of art, it'll probably get laggy in-game.
+---
+
+## Adding Custom Artwork
+
+If you want to add new pieces of art to the game:
+1. Place a `.png` file in the `raw_art` folder.
+2. Run the `generate_load_data.py` Python script to re-generate the game's data.
+
+> [!WARNING]
+> Avoid using **VERY large** pieces of art, as they will likely cause in-game lag.
+
+---
+
+<p align="center">
+  <a href="https://github.com/blockerlocker/color_match/graphs/contributors"><img alt="contributors" src="https://shieldcn.dev/contributors/blockerlocker/color_match.svg?names=true&amp;bots=true&amp;mode=dark&amp;watermark=true" /></a>
+</p>
