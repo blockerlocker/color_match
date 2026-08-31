@@ -141,7 +141,7 @@ for file_name in art_textures:
         for color in palette:
             if color["color"] != "none":
                 for unclaimed in unclaimed_colors:
-                    if weighted_hsv_distance(color["rgb"],unclaimed["rgb"],(2,1,3)) < 100:
+                    if weighted_hsv_distance(color["rgb"],unclaimed["rgb"],(2,1,3)) < 95:
                         color["blocks"].append(unclaimed["texture"])
 
                 color.pop("rgb",None)
