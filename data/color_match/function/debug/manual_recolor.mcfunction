@@ -1,0 +1,1 @@
+function color_match:zzz/manual_recolor_dialog with entity @n[type=marker,tag=color_match_painting,tag=color_match_init] data
