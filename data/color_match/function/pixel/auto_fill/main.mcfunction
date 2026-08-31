@@ -1,0 +1,2 @@
+execute unless entity @s[tag=color_match_pixel_air] if block ~ ~ ~ air run function color_match:pixel/auto_fill/block_changed
+execute if entity @s[tag=color_match_pixel_air] unless block ~ ~ ~ air run function color_match:pixel/auto_fill/block_changed

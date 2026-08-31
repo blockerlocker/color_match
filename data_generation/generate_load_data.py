@@ -1,6 +1,5 @@
-import os, json, shutil, colorsys, math, random
+import os, json, colorsys, math
 from PIL import Image
-from pathlib import Path
 
 abspath = os.path.abspath(__file__)
 directory = os.path.dirname(abspath)

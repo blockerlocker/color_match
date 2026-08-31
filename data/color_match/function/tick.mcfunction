@@ -1,0 +1,1 @@
+execute as @e[type=text_display,tag=color_match_pixel] at @s run function color_match:pixel/auto_fill/main

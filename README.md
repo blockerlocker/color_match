@@ -4,6 +4,8 @@ This is the data pack for my mini-game Color Match. You can use this data pack t
 
 It's also recommended you play with a mod or [resource pack](https://modrinth.com/resourcepack/unshaded-blocks) that disables block shading to make sure the side of the block in-game matches the brightness of the raw texture file used for averaging the block colors.
 
+For convenience, if the player holds the sprint key while placing/breaking blocks, it will automatically update all pixels of the same color to match.
+
 Here's an overview of each command you need to play the game yourself:
 | Command | Description |
 | --- | --- |
