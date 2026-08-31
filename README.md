@@ -1,6 +1,6 @@
 Made for 26.3
 
-This is the data pack for my mini-game Color Match. You can use this data pack to recreate the same setup I have in [my videos](https://www.youtube.com/shorts/nATbAgJJMsE), but I consider this project to be a work in progerss, and it's not necessarily a super simple and polished experience. Be sure to read this guide carefully if you're trying to set it up for yousrelf.
+This is the data pack for my mini-game Color Match. You can use this data pack to recreate the same setup I have in [my videos](https://www.youtube.com/shorts/nATbAgJJMsE), but I consider this project to be a work in progress, and it's not necessarily a super simple and polished experience. Be sure to read this guide carefully if you're trying to set it up for yousrelf.
 
 It's also recommended you play with a mod or [resource pack](https://modrinth.com/resourcepack/unshaded-blocks) that disables block shading to make sure the side of the block in-game matches the brightness of the raw texture file used for averaging the block colors.
 
