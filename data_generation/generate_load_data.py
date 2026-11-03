@@ -114,11 +114,6 @@ for file_name in art_textures:
 
                 pixels.append(palette.index(texel))
 
-        unclaimed_colors = []
-
-        for block in block_lookup:
-            unclaimed_colors.append(block)
-
         for color in palette:
             if color["rgb"] != "none":
                 palette[palette.index(color)]["blocks"] = []
@@ -132,17 +127,27 @@ for file_name in art_textures:
             
             return min(math.dist(a_weighted,b_weighted),math.dist(a_weighted,tuple(x - y for x, y in zip(hsv_b, (255 * weights[0], 0, 0)))),math.dist(a_weighted,tuple(x + y for x, y in zip(hsv_b, (255 * weights[0], 0, 0)))))
 
-        def hsv_distance(a,b):
-            hsv_a = hsv_color(*a)
-            hsv_b = hsv_color(*b)
-
-            return min(math.dist(hsv_a,hsv_b),math.dist(hsv_a,tuple(x - y for x, y in zip(hsv_b, (255, 0, 0)))),math.dist(hsv_a,tuple(x + y for x, y in zip(hsv_b, (255, 0, 0)))))
+        def append_colors(palette_color,max_distance,unclaimed_colors):
+            scan_unclaimed = unclaimed_colors.copy()
+            
+            for unclaimed in scan_unclaimed:
+                if weighted_hsv_distance(palette_color["rgb"],unclaimed["rgb"],(2,1,3)) < max_distance:
+                    palette_color["blocks"].append(unclaimed["texture"])
+                    unclaimed_colors.remove(unclaimed)
 
         for color in palette:
             if color["color"] != "none":
-                for unclaimed in unclaimed_colors:
-                    if weighted_hsv_distance(color["rgb"],unclaimed["rgb"],(2,1,3)) < 95:
-                        color["blocks"].append(unclaimed["texture"])
+
+                unclaimed_colors = []
+
+                for block in block_lookup:
+                    unclaimed_colors.append(block)
+                
+                color_closeness = 50
+
+                while len(color["blocks"]) <= 1:
+                    append_colors(color,color_closeness,unclaimed_colors)
+                    color_closeness += 5
 
                 color.pop("rgb",None)
 
