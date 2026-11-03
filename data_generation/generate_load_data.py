@@ -145,7 +145,7 @@ for file_name in art_textures:
                 
                 color_closeness = 50
 
-                while len(color["blocks"]) <= 1:
+                while len(color["blocks"]) < 4:
                     append_colors(color,color_closeness,unclaimed_colors)
                     color_closeness += 5
 
