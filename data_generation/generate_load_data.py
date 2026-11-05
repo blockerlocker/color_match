@@ -131,7 +131,7 @@ for file_name in art_textures:
             scan_unclaimed = unclaimed_colors.copy()
             
             for unclaimed in scan_unclaimed:
-                if weighted_hsv_distance(palette_color["rgb"],unclaimed["rgb"],(2,1,3)) < max_distance:
+                if weighted_hsv_distance(palette_color["rgb"],unclaimed["rgb"],(2,1,2)) < max_distance:
                     palette_color["blocks"].append(unclaimed["texture"])
                     unclaimed_colors.remove(unclaimed)
 
